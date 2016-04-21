@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <include layout="@layout/layout_title_bar"/>
+<ScrollView 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+       android:background="#919191">
+
+   
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" 
+     >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp" 
+            android:background="@drawable/bookinfo_background"
+            >
+
+            <ImageView
+                android:id="@+id/img_book_cover"
+                android:layout_width="135dp"
+                android:layout_height="150dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="17dp"
+                android:src="@drawable/ic_launcher" />
+
+            <RadioButton
+                android:id="@+id/show_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/img_book_cover"
+                android:layout_toRightOf="@+id/img_book_cover"
+                android:button="@null"
+                android:checked="false"
+                android:drawableLeft="@drawable/author"
+                android:text="   作者" />
+
+            <RadioButton
+                android:id="@+id/show_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/show_author"
+                android:layout_below="@+id/show_author"
+                android:layout_marginTop="3dp"
+                android:button="@drawable/tag"
+                android:checked="false"
+                android:text="   分类" />
+
+            <RadioButton
+                android:id="@+id/show_click"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/show_tag"
+                android:layout_below="@+id/show_tag"
+                  android:layout_marginTop="3dp"
+                android:button="@drawable/tag"
+                android:checked="false"
+                android:text="   点击" />
+
+            <RadioButton
+                android:id="@+id/show_collection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/show_click"
+                android:layout_below="@+id/show_click"
+                  android:layout_marginTop="3dp"
+                android:button="@drawable/tag"
+                android:checked="false"
+                android:text="   订阅" />
+
+            <RadioButton
+                android:id="@+id/show_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/show_collection"
+                android:layout_below="@+id/show_collection"
+                  android:layout_marginTop="3dp"
+                android:button="@drawable/time"
+                android:checked="false"
+                android:text="   更新" />
+
+            <Button
+                android:id="@+id/btn_collection"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@+id/show_update"
+                android:layout_toRightOf="@+id/img_book_cover"
+                  android:layout_marginTop="3dp"
+                android:background="#2975E8"
+                android:text="订阅小说"
+                android:textColor="#FFFFFF"
+                android:textSize="10dp" />
+
+            <Button
+                android:id="@+id/btn_read"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignBaseline="@+id/btn_collection"
+                android:layout_alignBottom="@+id/btn_collection"
+                android:layout_toRightOf="@+id/btn_collection"
+                android:text="开始阅读"
+                android:textSize="10dp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" 
+            android:background="#FFFFFF"
+            android:layout_marginTop="5dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txt_introduction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:textStyle="bold"
+                    android:maxLines="2"
+                    android:text="简介：" />
+            </LinearLayout>
+
+            <ToggleButton
+                android:id="@+id/btn_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:textOn="收起"
+                android:textOff="详细"
+                />
+          
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            
+            android:layout_marginTop="5dp"
+            android:background="#FFFFFF"
+         
+            android:orientation="horizontal" >
+
+            <TextView 
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="最新章节"
+               android:layout_weight="1"
+                />
+
+            <TextView
+                android:id="@+id/txt_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:gravity="right"
+                android:text="@string/eg_chapter_name" 
+                android:layout_marginRight="10dp"
+                android:textColor="#0000FF"/>
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            android:background="#FFFFFF" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:text="章节：" />
+
+                <ToggleButton
+                    android:id="@+id/btn_sort"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:textOff="倒序"
+                    android:textOn="正序" />
+
+            </RelativeLayout>
+
+            <TableLayout
+                android:id="@+id/list_chapter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" 
+                >
+
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                     >
+
+                    <TextView
+                        android:id="@+id/radioButton1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="第一章   xxxxx" />
+
+                    <TextView
+                        android:id="@+id/radioButton2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="第二章   xxxxx" />
+
+                </TableRow>
+            </TableLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" 
+            android:background="#FFFFFF"
+            android:layout_marginTop="5dp">
+            
+            <TextView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="评论 "/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+            <Button 
+                android:id="@+id/btn_more_evas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="更多评论"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    
+
+</ScrollView>
+</LinearLayout>

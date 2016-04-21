@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+
+<LinearLayout 
+    android:id="@+id/layer_context"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+   >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/page_control"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" 
+        android:layout_weight="94"
+      >
+
+        <LinearLayout
+            android:id="@+id/ly_context"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <TextView 
+                android:id="@+id/txt_context"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="正文这里显示"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical" 
+        android:layout_weight="3">
+        <TextView 
+            android:id="@+id/txt_state"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="页数"
+            android:background="#000000"
+            android:textColor="#ffffff"
+            android:layout_gravity="end"/>
+    </LinearLayout>
+
+</LinearLayout>
+
+   <LinearLayout
+        android:id="@+id/layer_control"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+    <include layout="@layout/layout_title_bar"
+       />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:layout_weight="90"/>
+
+    <LinearLayout
+        android:id="@+id/layer_choise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:orientation="horizontal" 
+        android:background="#000000"
+        android:layout_weight="5"
+        >
+        
+        <Button 
+            android:id="@+id/btn_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_launcher"
+            android:background="#000000"
+            android:text="设置"
+            android:textColor="#ffffff"/>
+         <Button 
+            android:id="@+id/btn_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_launcher"
+            android:background="#000000"
+            android:text="夜间"
+            android:textColor="#ffffff"/>
+          <Button 
+            android:id="@+id/btn_index"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_launcher"
+            android:background="#000000"
+            android:text="目录"
+            android:textColor="#ffffff"/>
+           <Button 
+            android:id="@+id/btn_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_launcher"
+            android:background="#000000"
+            android:text="评论"
+            android:textColor="#ffffff"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layer_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#AAAAAA"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/ly_choose_txtSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="字体大小"
+                    android:textColor="#0000ff"
+                    android:textSize="20dp" />
+
+                <Button
+                    android:id="@+id/btn_txtsize_plus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="A+" />
+
+                <Button
+                    android:id="@+id/btn_txtsize_minus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="A-" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ly_choose_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="背景"
+                    android:textColor="#0000ff"
+                    android:textSize="20dp" />
+
+                <Button
+                    android:id="@+id/btn_color_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#555555" />
+
+                <Button
+                    android:id="@+id/btn_color_red"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#FF0000" />
+
+                <Button
+                    android:id="@+id/btn_color_green"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#00ff00" />
+
+                <Button
+                    android:id="@+id/btn_color_blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#0000ff" />
+
+                <Button
+                    android:id="@+id/btn_color_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF" />
+            </LinearLayout>
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+            android:orientation="horizontal"
+            android:background="#000000">
+                 <Button 
+            android:id="@+id/btn_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_launcher"
+            android:background="#000000"
+            android:text="收起"
+            android:textColor="#ffffff"/>
+        </LinearLayout>
+           
+    </LinearLayout>
+    
+    </LinearLayout>
+  
+</FrameLayout>

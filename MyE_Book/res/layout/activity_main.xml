@@ -1,0 +1,128 @@
+
+ <LinearLayout
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+        <include layout="@layout/layout_title_bar"/>
+<ScrollView 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#BBBBBB"
+    
+    >
+
+
+     
+<LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+   
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" 
+        android:background="#FFFFFF">
+
+        <com.example.mye_book.myView.SlideShowView 
+             android:id="@+id/slideshowView"  
+        android:layout_width="fill_parent"  
+        android:layout_height="180dp"  
+       >
+
+        </com.example.mye_book.myView.SlideShowView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RadioGroup
+            android:id="@+id/rg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/radioButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/classy"
+                android:gravity="center"
+                android:text="分类" />
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/recom_random"
+                android:gravity="center"
+                android:text="推荐" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/rank"
+                android:gravity="center"
+                android:text="排行" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" >
+        <com.example.mye_book.myView.rtwView 
+            android:id="@+id/rView"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" >
+        <com.example.mye_book.myView.rtwView 
+            android:id="@+id/tView"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" >
+        <com.example.mye_book.myView.rtwView 
+            android:id="@+id/wView"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            />
+    </LinearLayout>
+    
+</LinearLayout>
+
+</ScrollView>
+</LinearLayout>
