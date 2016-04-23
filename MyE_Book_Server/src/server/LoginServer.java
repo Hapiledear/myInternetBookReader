@@ -22,8 +22,8 @@ import DAO.UserDao;
 @WebServlet("/LoginServer")
 public class LoginServer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	JSONObject jsonObj = new JSONObject();
-	JSONObject userJson = new JSONObject();
+	
+	
 	UserDao userDao = new UserDao();
        
     /**
@@ -72,7 +72,10 @@ public class LoginServer extends HttpServlet {
 		String acidCode=request.getParameter("acidCode");
 		System.out.println("name:" + name);
 		System.out.println("code:" + acidCode);
+		
 		response.setCharacterEncoding("UTF-8");
+    	response.setContentType("text/html;charset=utf-8");
+    	
 		PrintWriter out;
 		out = response.getWriter();
 		try {
@@ -141,7 +144,11 @@ public class LoginServer extends HttpServlet {
 		String Pass = request.getParameter("Pass");
 		System.out.println("name:" + Name);
 		System.out.println("pass:" + Pass);
+		
+		JSONObject jsonObj = new JSONObject();
 		response.setCharacterEncoding("UTF-8");
+    	response.setContentType("text/html;charset=utf-8");
+    	
 		PrintWriter out;
 		out = response.getWriter();
 		if (userDao.hasUser(Name)) {
@@ -176,13 +183,17 @@ public class LoginServer extends HttpServlet {
 			e.printStackTrace();
 		}
 
+		JSONObject jsonObj = new JSONObject();
 		response.setCharacterEncoding("UTF-8");
+    	response.setContentType("text/html;charset=utf-8");
+    	
 		PrintWriter out;
 		out = response.getWriter();
 
 		if (user.getUserid()>0) {
-			
+			JSONObject userJson = new JSONObject();
 			if(user.getState()==0){
+				
 				jsonObj.put("login", "nostate");
 				userJson.put("id", user.getUserid());
 				jsonObj.put("user", userJson);
@@ -196,6 +207,7 @@ public class LoginServer extends HttpServlet {
 			out.println(jsonObj.toString());
 			}
 		} else {
+			JSONObject userJson = new JSONObject();
 			jsonObj.put("login", "faild");
 			userJson.put("id", user.getUserid());
 			jsonObj.put("user", userJson);

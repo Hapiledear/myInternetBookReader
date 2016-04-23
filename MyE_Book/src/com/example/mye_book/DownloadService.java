@@ -47,21 +47,21 @@ public class DownloadService extends Service {
 		public void run() {
 			// TODO Auto-generated method stub
 			try {  
-                //·şÎñÆ÷ÉÏĞÂ°æapkµØÖ·  
+                //è·å–æœåŠ¡ç«¯çš„å­—èŠ‚æµ  
 				String cp_url="http://192.168.199.129:8080/MyE_Book_Server/"+chapter.getUrl();
                 URL url = new URL(cp_url);  
                 HttpURLConnection conn = (HttpURLConnection)url.openConnection();  
                 conn.connect();  
                 int length = conn.getContentLength();  
                 InputStream is = conn.getInputStream();  
-                File file = new File(filePath+chapter.getBook_id()+"/"); //Êé¼® ÎÄ¼ş¼Ğ,id±àºÅ
+                File file = new File(filePath+chapter.getBook_id()+"/"); //æ ¹æ®idåˆ›å»ºå¯¹åº”æ–‡ä»¶å¤¹
                 if(!file.exists()){  
-                    //Èç¹ûÎÄ¼ş¼Ğ²»´æÔÚ,Ôò´´½¨  
+                    //å¦‚æœä¸å­˜åœ¨åˆ™åˆ›å»ºä»–
                     file.mkdir();  
                 }  
-                //ÏÂÔØ·şÎñÆ÷ÖĞĞÂ°æ±¾Èí¼ş£¨Ğ´ÎÄ¼ş£©  
+                //è¾“å‡ºæµæ¢è¾“å…¥æµï¼Œè¾“å…¥æ–‡ä»¶
                 String bookFile = filePath;  
-                File ChapterFile = new File(bookFile); //ÕÂ½ÚÎÄ¼şÂ·¾¶
+                File ChapterFile = new File(bookFile); //åˆ›å»ºå¯¹åº”ç« èŠ‚æ–‡ä»¶.txt
                 @SuppressWarnings("resource")
 				FileOutputStream fos = new FileOutputStream(ChapterFile);  
                 int count = 0;  
@@ -69,7 +69,7 @@ public class DownloadService extends Service {
                 do{  
                     int numRead = is.read(buf);  
                     count += numRead;  
-                    //¸üĞÂ½ø¶ÈÌõ  
+                    //æ›´æ–°è¿›åº¦æ¡
                     progress = (int) (((float) count / length) * 100);  
                     Message message=new Message();
                     message.arg1=chapter.getChapter_id();
@@ -85,7 +85,7 @@ public class DownloadService extends Service {
 					}
                   
                     if(numRead <= 0){  
-                        //ÏÂÔØÍê³ÉÍ¨Öª°²×°  
+                        //å†™å…¥å®Œæˆ 
                     	 Message message1=new Message();
                          message1.arg1=chapter.getChapter_id();
                          message1.arg2=100;
@@ -95,7 +95,7 @@ public class DownloadService extends Service {
                        break;  
                     }  
                     fos.write(buf,0,numRead);  
-                    //µ±µã»÷È¡ÏûÊ±£¬ÔòÍ£Ö¹ÏÂÔØ  
+                    //ç»“æŸæ ‡å¿—
                 }while(downloading); 
                
                 
@@ -138,14 +138,14 @@ public class DownloadService extends Service {
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		// TODO Auto-generated method stub
-		Log.v(TAG, "ServiceÆô¶¯");
-		//³õÊ¼»¯²Ù×÷
+		Log.v(TAG, "Service å¯åŠ¨");
+		//åˆå§‹åŒ–
 		chapters=(List<Chapter>) intent.getSerializableExtra("chapters");
 		Log.v(TAG, "chapters:"+chapters.toString());
 		filePath=Environment.getExternalStorageDirectory().getAbsolutePath() + "/DownloadBookFile/";
 		
 		
-		//downlode_sample.start();//Ä£ÄâÏÂÔØÏß³Ì
+		//downlode_sample.start();//æµ‹è¯•ç”¨
 		for (Chapter chapter:chapters) {
 			fixedThreadPool =Executors.newFixedThreadPool(ThreadSize);
 			Download download=new Download(chapter);
@@ -161,13 +161,13 @@ public class DownloadService extends Service {
 	private void creatNotification(String name, int id) {
 		mNotificationManager = (NotificationManager) getSystemService(  
 		            android.content.Context.NOTIFICATION_SERVICE);  
-		//notificationµÄÉèÖÃ£¬¾ø¶Ô²»ÄÜÊ¡È¥
+		//notificationåˆå§‹åŒ–ï¼Œå…¶ä¸­iconå’Œwhenå¿…ä¸å¯å°‘
 		
 		Notification mNotification= new Notification();  
 		mNotification.icon=R.drawable.ic_launcher;
 		mNotification.when=System.currentTimeMillis();
 		noti.add(mNotification);
-		//×Ô¶¨ÒåµÄ
+		// è‡ªå®šä¹‰çš„view
 		RemoteViews mRemoteView = new RemoteViews(this.getPackageName(), R.layout.remote_view_layout);
 		mRemoteView.setImageViewResource(R.id.image	, R.drawable.ic_launcher);
 		mRemoteView.setTextViewText(R.id.text, name);
@@ -182,7 +182,7 @@ public class DownloadService extends Service {
 	public void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		Log.v(TAG, "service½áÊø");
+		Log.v(TAG, "serviceç»“æŸ ");
 		mNotificationManager.cancelAll();
 	}
 	
@@ -195,21 +195,21 @@ public class DownloadService extends Service {
             	RemoteViews mRemoteView =mNotification.contentView;
 	            switch (msg.what) {  
 	            case 1:  
-	            	Log.v(TAG, id+"¸üĞÂ½ø¶È:"+progress);
-	                // ¸üĞÂ½ø¶ÈÇé¿ö  
+	            	Log.v(TAG, id+"ä¸‹è½½è¿›åº¦:"+progress);
+	                // æ›´æ–°è¿›åº¦æ¡
 	            	
 	            	mRemoteView.setProgressBar(R.id.progress_horizontal, 100, progress, false);
 					mNotificationManager.notify(id, mNotification);
 	                break;  
 	            case 0:  
-	                // ÏÂÔØÈÎÎñÍê³É
-	            	Log.v(TAG, id+"ÏÂÔØÍê³É");
-	            	mRemoteView.setTextViewText(R.id.text, id+"ÏÂÔØÍê³É");
+	                // ä¸‹è½½ç»“æŸï¼Œæ›´æ–°è¿›åº¦æ¡
+	            	Log.v(TAG, id+"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+	            	mRemoteView.setTextViewText(R.id.text, id+"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 	    			mNotification.flags=Notification.FLAG_AUTO_CANCEL;
 	    			mNotificationManager.notify(id, mNotification);
 	    			doneThread=doneThread+1;
 	    			if (doneThread==chapters.size()) {
-						Log.v(TAG, "ËùÓĞÈÎÎñ¶¼Íê³ÉÁË");
+						Log.v(TAG, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 						onDestroy();
 					}
 	                break;  

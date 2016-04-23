@@ -21,18 +21,18 @@ USE `e_book_db`;
 DROP TABLE IF EXISTS `tb_book`;
 
 CREATE TABLE `tb_book` (
-  `id` char(50) CHARACTER SET utf8 NOT NULL,
-  `url` char(50) CHARACTER SET utf8 DEFAULT 'img/nopicture.jpg' COMMENT '封面路径',
-  `author` char(50) CHARACTER SET utf8 DEFAULT '未知',
-  `lab` char(50) CHARACTER SET utf8 DEFAULT '其它' COMMENT '分类标签，&号分隔',
+  `id` char(50) NOT NULL,
+  `url` char(50) DEFAULT 'img/nopicture.jpg' COMMENT '封面路径',
+  `author` char(50) DEFAULT '未知',
+  `lab` char(50) DEFAULT '其它' COMMENT '分类标签，&号分隔',
   `click_num` int(10) DEFAULT '0' COMMENT '点击数',
   `collection_num` int(10) DEFAULT '0' COMMENT '收藏数',
   `update` date DEFAULT NULL COMMENT '更新日期',
   `state` int(1) DEFAULT '0' COMMENT '状态：连载or完结',
-  `name` char(50) CHARACTER SET utf8 DEFAULT NULL,
-  `Introduction` varchar(1000) CHARACTER SET utf8 NOT NULL DEFAULT '暂无简介' COMMENT '简介，50个字之内',
+  `name` char(50) DEFAULT NULL,
+  `Introduction` varchar(1000) NOT NULL DEFAULT '暂无简介' COMMENT '简介，50个字之内',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_book` */
 
@@ -43,14 +43,14 @@ insert  into `tb_book`(`id`,`url`,`author`,`lab`,`click_num`,`collection_num`,`u
 DROP TABLE IF EXISTS `tb_chapter`;
 
 CREATE TABLE `tb_chapter` (
-  `b_id` char(50) CHARACTER SET utf8 NOT NULL COMMENT '书籍id',
+  `b_id` char(50) NOT NULL COMMENT '书籍id',
   `c_id` int(50) NOT NULL COMMENT '章节id',
-  `c_name` char(50) CHARACTER SET utf8 NOT NULL COMMENT '章节名称',
-  `url` char(50) CHARACTER SET utf8 NOT NULL COMMENT '相对地址 book/b_id/c_id',
+  `c_name` char(50) NOT NULL COMMENT '章节名称',
+  `url` char(50) NOT NULL COMMENT '相对地址 book/b_id/c_id',
   `date` date DEFAULT NULL COMMENT '更新日期',
   PRIMARY KEY (`b_id`,`c_id`),
   CONSTRAINT `tb_chapter_ibfk_1` FOREIGN KEY (`b_id`) REFERENCES `tb_book` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_chapter` */
 
@@ -79,14 +79,14 @@ DROP TABLE IF EXISTS `tb_user`;
 
 CREATE TABLE `tb_user` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
-  `name` char(50) CHARACTER SET utf8 NOT NULL COMMENT '账号',
-  `password` char(50) CHARACTER SET utf8 NOT NULL COMMENT '密码',
-  `email` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `phone` char(50) CHARACTER SET utf8 DEFAULT NULL,
+  `name` char(50) NOT NULL COMMENT '账号',
+  `password` char(50) NOT NULL COMMENT '密码',
+  `email` varchar(50) DEFAULT NULL,
+  `phone` char(50) DEFAULT NULL,
   `state` int(1) DEFAULT '0' COMMENT '是否被验证',
-  `acidcode` char(50) CHARACTER SET utf8 DEFAULT NULL COMMENT '验证码',
+  `acidcode` char(50) DEFAULT NULL COMMENT '验证码',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=gbk;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_user` */
 

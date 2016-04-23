@@ -70,7 +70,8 @@ public class ChapterServer extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		response.setCharacterEncoding("GBK");
+		response.setCharacterEncoding("UTF-8");
+    	response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = null;
 		boolean isEmpty=true;
 		try {

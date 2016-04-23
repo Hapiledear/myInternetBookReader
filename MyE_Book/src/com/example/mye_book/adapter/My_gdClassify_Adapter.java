@@ -10,6 +10,9 @@ import com.example.mye_book.R;
 
 
 
+import com.example.mye_book.URL;
+import com.example.mye_book.utils.MyPost;
+
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,8 +27,9 @@ public class My_gdClassify_Adapter extends BaseAdapter {
 	String TAG="My_gdClassify_Adapter";
 	
 	 private Context context;
-	 private LayoutInflater mInflater;// ��̬����ӳ�� 
+	 private LayoutInflater mInflater;// ��̬����ӳ�� 
 	 private ArrayList<HashMap<String,Object>> mDate;
+	 private String clicked_txt;
 	 
 	 public final class ViewHolder{
 		 public TextView text;
@@ -81,9 +85,26 @@ public class My_gdClassify_Adapter extends BaseAdapter {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Log.v(TAG, show_txt+"clicked");
+				//与服务器通信，获取分类查询结果
+				clicked_txt=show_txt;
+				getinfolist.start();
 			}
 		});
 		return convertView;
 	}
+	
+	Thread getinfolist=new Thread(new Runnable() {
+		
+		
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			MyPost post=new MyPost(URL.GET_BOOK_LIST_BY_CLASSIFY);
+			post.addPostValue("book_classify", clicked_txt);
+			String result= post.Startpost();
+			Log.v(TAG, "result:"+result);
+		}
+	});
 
 }

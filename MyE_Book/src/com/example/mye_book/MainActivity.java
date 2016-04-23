@@ -68,11 +68,11 @@ public class MainActivity extends Activity implements OnClickListener,OnCheckedC
 		// TODO Auto-generated method stub
 		if (keyCode == KeyEvent.KEYCODE_BACK) {  
           if ((System.currentTimeMillis() - mExitTime) > 2000) {
-              // Èç¹ûÁ½´Î°´¼üÊ±¼ä¼ä¸ô´óÓÚ2000ºÁÃë£¬Ôò²»ÍË³ö  
-              Toast.makeText(this, "ÔÙ°´Ò»´ÎÍË³ö³ÌĞò", Toast.LENGTH_SHORT).show();  
-              mExitTime = System.currentTimeMillis();// ¸üĞÂmExitTime  
+              // è¿æŒ‰æ¬¡æ•°åœ¨2000æ¯«ç§’ä»¥å†…ï¼Œæ¥å—é€€å‡º  
+              Toast.makeText(this, "åœ¨æŒ‰ä¸€æ¬¡å³å¯é€€å‡º", Toast.LENGTH_SHORT).show();  
+              mExitTime = System.currentTimeMillis();// ï¿½ï¿½ï¿½ï¿½mExitTime  
           } else {  
-              System.exit(0);// ·ñÔòÍË³ö³ÌĞò  
+              System.exit(0);//é€€å‡ºç¨‹åº 
           }  
           return true;  
       }  
@@ -90,7 +90,7 @@ public class MainActivity extends Activity implements OnClickListener,OnCheckedC
 			@Override
 			public void onClick(int position) {
 				// TODO Auto-generated method stub
-				Log.v(TAG, position+"±»µã»÷ÁË");
+				Log.v(TAG, position+"è¢«ç‚¹å‡»äº† ");
 				MainActivity.this.position=position+1+"";
 				new Thread(getb_id).start();
 			}
@@ -103,15 +103,15 @@ public class MainActivity extends Activity implements OnClickListener,OnCheckedC
 		rb_3=(RadioButton) findViewById(R.id.radioButton3);
 		
 		rView=(rtwView) findViewById(R.id.rView);
-		rView.setTxt_show("ÈÈÃÅä¯ÀÀ");
+		rView.setTxt_show("çƒ­é—¨ä¹¦ç±");
 		rView.setShowType(0);
 		
 		tView=(rtwView) findViewById(R.id.tView);
-		tView.setTxt_show("×î½ü¸üĞÂ");
+		tView.setTxt_show("æœ€è¿‘æ›´æ–°");
 		tView.setShowType(1);
 		
 		wView=(rtwView) findViewById(R.id.wView);
-		wView.setTxt_show("Íê½á¾­µä");
+		wView.setTxt_show("å®Œç»“ç»å…¸");
 		wView.setShowType(2);
 	}
 
@@ -137,13 +137,13 @@ public class MainActivity extends Activity implements OnClickListener,OnCheckedC
 			List<NameValuePair> parameters = new ArrayList<NameValuePair>();
 			parameters.add(new BasicNameValuePair("position", position));
 			try {
-				post.setEntity(new UrlEncodedFormEntity(parameters, "UTF-8"));//ÉèÖÃ´«Êä²ÎÊı£¬²¢½øĞĞ´«Êä
-				HttpResponse httpResponse = http.execute(post);//»ñÈ¡´«ÊäµÄ·µ»Ø½á¹û
+				post.setEntity(new UrlEncodedFormEntity(parameters, "UTF-8"));//ï¿½ï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ´ï¿½ï¿½ï¿½
+				HttpResponse httpResponse = http.execute(post);//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½Ø½ï¿½ï¿½
 				
-				if (httpResponse.getStatusLine().getStatusCode() == 200) {// Èç¹ûÓĞÏìÓ¦
+				if (httpResponse.getStatusLine().getStatusCode() == 200) {// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦
 					Log.e(TAG, "success!");
 					String result = EntityUtils.toString(httpResponse
-							.getEntity());// »ñÈ¡ÆäÖĞµÄ×Ö·û´®
+							.getEntity());// ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ğµï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 					parseJson(result);
 				} else {
 					Log.e(TAG,"fail");
@@ -167,7 +167,7 @@ public class MainActivity extends Activity implements OnClickListener,OnCheckedC
 			handler.sendEmptyMessage(SUCCESS);
 			Log.v(TAG, book.toString());
 		}else{
-			Log.v(TAG, "·¢ÉúÁËÎ´Öª´íÎó£¡");
+			Log.v(TAG, "æ•°æ®è§£æå¤±è´¥");
 			handler.sendEmptyMessage(FAIL);
 		}
 	}
@@ -176,11 +176,11 @@ public class MainActivity extends Activity implements OnClickListener,OnCheckedC
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
 			case SUCCESS:
-				showToast("¶ÁÈ¡Êı¾İ³É¹¦£¡");
-				//Êé¼®ÏêÏ¸½çÃæÇĞ»»
+				showToast("æ•°æ®è§£æå®Œæ¯•");
+				//ï¿½é¼®ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½ï¿½Ğ»ï¿½
 				break;
 			case FAIL:
-				showToast("Ã»ÓĞÊé¼®ĞÅÏ¢ÓëÖ®¶ÔÓ¦");
+				showToast("æ•°æ®è§£æå¤±è´¥");
 				break;
 
 			default:
@@ -199,15 +199,15 @@ public class MainActivity extends Activity implements OnClickListener,OnCheckedC
 		// TODO Auto-generated method stub
 		switch (checkedId) {
 		case R.id.radioButton1:
-			showToast("·ÖÀà±»Ñ¡ÖĞ");
+			showToast("åˆ†ç±»è¢«ç‚¹å‡»");
 			Intent intent=new Intent(MainActivity.this,ClassifyActivity.class);
 			startActivity(intent);
 			break;
         case R.id.radioButton2:
-			showToast("ÅÅĞĞ±»Ñ¡ÖĞ");
+			showToast("æ¨èè¢«ç‚¹å‡»");
 			break;
 		case R.id.radioButton3:
-			showToast("ÍÆ¼ö±»Ñ¡ÖĞ");
+			showToast("æ’è¡Œè¢«ç‚¹å‡»");
 			break;
 
 		default:

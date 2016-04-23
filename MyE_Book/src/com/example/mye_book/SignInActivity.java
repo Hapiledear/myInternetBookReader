@@ -82,18 +82,18 @@ public class SignInActivity extends Activity implements OnClickListener{
 		}
 	}
 /***
- * ¼ìÑéÊäÈëÊÇ·ñ·ûºÏ¹æ·¶
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ï¹æ·¶
  */
 	private void check() {
 		// TODO Auto-generated method stub
-		/*Á½´ÎÊäÈëµÄÃÜÂëÏàÍ¬*/
+		/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬*/
 		
 		str_account=edt_account.getText().toString();
 		str_passwd=edt_passwd.getText().toString();
 		str_passwd_again=edt_passwd_again.getText().toString();
 		if(!str_passwd.equals(str_passwd_again)){
 			txt_hit.setVisibility(View.VISIBLE);
-			txt_hit.setText("´íÎó£ºÁ½´ÎÊäÈëµÄÃÜÂë²»Ò»ÖÂ£¡");
+			txt_hit.setText("ä¸¤æ¬¡è¾“å…¥çš„å¯†ç ä¸ä¸€è‡´ï¼");
 			check_ok=false;
 		}else{
 			txt_hit.setVisibility(View.GONE);
@@ -108,20 +108,20 @@ private Runnable sign_in=new Runnable(){
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		Log.v(TAG, "ÕËºÅ:"+str_account+"ÃÜÂë:"+str_passwd);
+		Log.v(TAG, "è´¦å·:"+str_account+"å¯†ç :"+str_passwd);
 		HttpClient http = new DefaultHttpClient();
 		HttpPost post = new HttpPost(URL.REGISTER);
 		List<NameValuePair> parameters = new ArrayList<NameValuePair>();
 		parameters.add(new BasicNameValuePair("Name", str_account));
 		parameters.add(new BasicNameValuePair("Pass", str_passwd));
 		try {
-			post.setEntity(new UrlEncodedFormEntity(parameters, "UTF-8"));//ÉèÖÃ´«Êä²ÎÊı£¬²¢½øĞĞ´«Êä
-			HttpResponse httpResponse = http.execute(post);//»ñÈ¡´«ÊäµÄ·µ»Ø½á¹û
+			post.setEntity(new UrlEncodedFormEntity(parameters, "UTF-8"));//ï¿½ï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ´ï¿½ï¿½ï¿½
+			HttpResponse httpResponse = http.execute(post);//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½Ø½ï¿½ï¿½
 			
-			if (httpResponse.getStatusLine().getStatusCode() == 200) {// Èç¹ûÓĞÏìÓ¦
+			if (httpResponse.getStatusLine().getStatusCode() == 200) {// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦
 				Log.e(TAG, "success!");
 				String result = EntityUtils.toString(httpResponse
-						.getEntity());// »ñÈ¡ÆäÖĞµÄ×Ö·û´®
+						.getEntity());// ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ğµï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 				parseJson(result);
 			} else {
 				Log.e(TAG,"fail");
@@ -152,17 +152,17 @@ Handler signHander=new Handler(){
 	public void handleMessage(Message msg) {
 		switch (msg.what) {
 		case SIGNIN_SUCCESS:
-			showToast("×¢²á³É¹¦£¡");
+			showToast("×¢æ³¨å†ŒæˆåŠŸï¼");
 			Intent intent=new Intent();
-			intent.setClass(SignInActivity.this, LogInActivity.class);//Ìø×ªµ½µÇÂ½½çÃæ
+			intent.setClass(SignInActivity.this, LogInActivity.class);//ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½
 			startActivity(intent);
 			finish();
 			break;
 		case SIGNIN_FAILD:
-			showToast("×¢²áÊ§°Ü£¬·¢ÉúÁËÎ´ÖªµÄ´íÎó.");
+			showToast("æ³¨å†Œå¤±è´¥.");
 			break;
 		case HAS_USER:
-			showToast("¸ÃÕËºÅÒÑ¾­±»×¢²á¹ıÁË.");
+			showToast("è¯¥ç”¨æˆ·å·²å­˜åœ¨");
 			break;
 
 		default:

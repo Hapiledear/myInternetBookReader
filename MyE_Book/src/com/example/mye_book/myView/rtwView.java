@@ -61,9 +61,9 @@ public class rtwView extends FrameLayout {
 			// TODO Auto-generated method stub
 			LinearLayout layout=(LinearLayout) findViewById(v.getId());
 			Log.v(TAG, "book_cell_"+v.getId()+" clicked!");
-			Log.v(TAG, "Êé¼®idÎª£º"+layout.getTag().toString());
+			Log.v(TAG, "book_id"+layout.getTag().toString());
 			int Book_id=Integer.parseInt(layout.getTag().toString());
-			Book theBook=books.get(Book_id-1);//Êı×éÏÂ±ê´ÓÁã¿ªÊ¼
+			Book theBook=books.get(Book_id-1);//ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½ã¿ªÊ¼
 			Log.v(TAG, theBook.toString());
 			
 			Intent intent_to_bookinfo=new Intent(getContext(),BookInfoActivity.class);
@@ -121,7 +121,7 @@ public class rtwView extends FrameLayout {
 	}
     String TAG="rtwView";
  	/**
- 	 * 0ÎªÈÈÃÅ£¬1Îª¸üĞÂ£¬2ÎªÍê½á
+ 	 * 0ä¸ºçƒ­é—¨1ä¸ºæ›´æ–°2ä¸ºå®Œç»“
  	 */
 	int showType;
 	String[] imgUrls;
@@ -150,7 +150,7 @@ public class rtwView extends FrameLayout {
 				imgUrls[i]=URL.localhost+URL.ServerName+"/"+books.get(i).getUrl();
 			}
 		}else{
-			Log.v(TAG, "½âÎöÊ§°Ü");
+			Log.v(TAG, "è·å–å¤±è´¥!");
 		}
 	}
 	public boolean getImgUrl() {
@@ -209,13 +209,13 @@ public class rtwView extends FrameLayout {
 	private void initImageLoader(Context context2) {
 		// TODO Auto-generated method stub
 		  ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
-	        .threadPriority(Thread.NORM_PRIORITY - 2)//¼ÓÔØÍ¼Æ¬µÄÏß³ÌÊı
-	        		.denyCacheImageMultipleSizesInMemory()///½âÂëÍ¼ÏñµÄ´ó³ß´ç½«ÔÚÄÚ´æÖĞ»º´æÏÈÇ°½âÂëÍ¼ÏñµÄĞ¡³ß´ç
-	        		.discCacheFileNameGenerator(new Md5FileNameGenerator())//ÉèÖÃ´ÅÅÌ»º´æÎÄ¼şÃû³Æ
-	        		.tasksProcessingOrder(QueueProcessingType.LIFO)//ÉèÖÃ¼ÓÔØÏÔÊ¾Í¼Æ¬¶ÓÁĞ½ø³Ì
+	        .threadPriority(Thread.NORM_PRIORITY - 2)//ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ß³ï¿½ï¿½ï¿½
+	        		.denyCacheImageMultipleSizesInMemory()///ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½Ä´ï¿½ß´ç½«ï¿½ï¿½ï¿½Ú´ï¿½ï¿½Ğ»ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½Ğ¡ï¿½ß´ï¿½
+	        		.discCacheFileNameGenerator(new Md5FileNameGenerator())//ï¿½ï¿½ï¿½Ã´ï¿½ï¿½Ì»ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	        		.tasksProcessingOrder(QueueProcessingType.LIFO)//ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Í¼Æ¬ï¿½ï¿½ï¿½Ğ½ï¿½ï¿½ï¿½
 	        		.writeDebugLogs()
 	        		.build();  
-	      //Ìá½»ÉèÖÃ
+	      //æäº¤è®¾ç½®
 	        ImageLoader.getInstance().init(config);  
 	        
 	        options = new DisplayImageOptions.Builder()  
@@ -241,11 +241,11 @@ public class rtwView extends FrameLayout {
 		
 		for (int i = 0; i < imgUrls.length; i++) {
 			LinearLayout layout=new LinearLayout(context);
-			LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(135, 180);//¿í¸ß
-			layoutParams.setMargins(5, 0, 5, 0);//±ß¾à
+			LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(135, 180);//ï¿½ï¿½ï¿½
+			layoutParams.setMargins(5, 0, 5, 0);//ï¿½ß¾ï¿½
 			layout.setLayoutParams(layoutParams);
-			layout.setGravity(Gravity.CENTER);//¶ÔÆë·½Ê½
-			layout.setOrientation(LinearLayout.VERTICAL);//´¹Ö±²¼¾Ö(ÉÏÏÂ)
+			layout.setGravity(Gravity.CENTER);//ï¿½ï¿½ï¿½ë·½Ê½
+			layout.setOrientation(LinearLayout.VERTICAL);//ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
 			layout.setId(i);
 			layout.setTag(books.get(i).getId());
 			layout.setOnClickListener(new BookCellClickListener());
@@ -253,7 +253,7 @@ public class rtwView extends FrameLayout {
 			ImageView imageView=new ImageView(context);
 			LayoutParams params=new LayoutParams(135, 150);
 			imageView.setLayoutParams(params);
-			imageLoader.displayImage(imgUrls[i], imageView,options);//ÉèÖÃÍ¼Æ¬
+			imageLoader.displayImage(imgUrls[i], imageView,options);//ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
 			layout.addView(imageView);
 			
 			TextView textView=new TextView(context);

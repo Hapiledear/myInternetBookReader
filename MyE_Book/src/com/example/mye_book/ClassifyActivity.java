@@ -32,7 +32,7 @@ public class ClassifyActivity extends Activity {
 			R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher,
 			R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher,
 			R.drawable.ic_launcher,R.drawable.ic_launcher};
-	private String[] txt={"Ã°ÏÕ","¸ãĞ¦","Õ½¶· ","¿Æ»Ã","Áµ°®","ÕìÌ½","Ä§·¨","Éñ¹í","Ğ£Ô°","¿Ö²À","ÆäËû"};
+	private String[] txt={"æµ‹è¯•","æç¬‘","æˆ˜æ–—","ç§‘å¹»","æ‹çˆ±","ä¾¦æ¢","é­”æ³•","ç¥é¬¼","æ ¡å›­","ææ€–","å…¶ä»–"};
 	private ArrayList<HashMap<String,Object>>mDate;
 	private TextView txt_title;
 	private Button btn_right;

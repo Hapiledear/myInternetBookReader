@@ -47,11 +47,11 @@ public class ReadActivity extends Activity {
 			}
 			String result=post.Startpost();
 			JSONObject json=JSONObject.parseObject(result);
-			Log.v(TAG, "ÏÂÒ»ÕÂ½ÚĞÅÏ¢:"+json.toString());
+			Log.v(TAG, "json:"+json.toString());
 			
 			String next=json.getString("next");
 			if (next.equals("false")) {
-				//ÎŞ¸ü¶àÕÂ½ÚĞÅÏ¢
+				
 				handler_set_content.sendEmptyMessage(NO_CHAPTER);
 			}else{
 				chapter=json.getObject("chapter", Chapter.class);
@@ -61,6 +61,11 @@ public class ReadActivity extends Activity {
 		}
 		
 	}
+	/**
+	 * æ”¹å˜å­—ä½“å¤§å°ï¼ŒèƒŒæ™¯é¢œè‰²ç­‰è®¾ç½®æ“ä½œ
+	 * @author Administrator
+	 *
+	 */
 	public class OnChangeContextClickListener implements OnClickListener {
 
 		@Override
@@ -108,6 +113,11 @@ public class ReadActivity extends Activity {
 		}
 
 	}
+	/**
+	 * é€‰æ‹©åŸºæœ¬çš„è®¾ç½®
+	 * @author Administrator
+	 *
+	 */
 	public class OnChooseClickListener implements OnClickListener {
 
 		@Override
@@ -115,23 +125,23 @@ public class ReadActivity extends Activity {
 			// TODO Auto-generated method stub
 			switch (v.getId()) {
 			case R.id.btn_set:
-				Log.v(TAG, "ÉèÖÃ±»µã»÷ÁË");
+				Log.v(TAG, "btn_set clicked!");
 				layer_choise.setVisibility(View.GONE);
 				layer_detail.setVisibility(View.VISIBLE);
 				break;
 			case R.id.btn_close:
-				Log.v(TAG, "btn_close±»µã»÷ÁË");
+				Log.v(TAG, "btn_close clicked");
 				layer_choise.setVisibility(View.VISIBLE);
 				layer_detail.setVisibility(View.GONE);
 				break;
 			case R.id.btn_mode:
-				Log.v(TAG, "Ò¹¼ä±»µã»÷ÁË");
+				Log.v(TAG, "btn_mode clicked!");
 				break;
 			case R.id.btn_index:
-				Log.v(TAG, "Ä¿Â¼±»µã»÷ÁË");
+				Log.v(TAG, "btn_index clicked");
 				break;
 			case R.id.btn_comment:
-				Log.v(TAG, "ÆÀÂÛ±»µã»÷ÁË");
+				Log.v(TAG, "btn_comment clicked!");
 				break;
 
 			default:
@@ -148,7 +158,7 @@ public class ReadActivity extends Activity {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 			pDialog=new ProgressDialog(ReadActivity.this);
-			pDialog.setMessage("ÕıÔÚ¼ÓÔØ£¬ÇëÉÔºó");
+			pDialog.setMessage("æ­£åœ¨åŠ è½½ï¼Œè¯·ç¨å");
 			
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(true);
@@ -163,9 +173,9 @@ public class ReadActivity extends Activity {
 			MyPost post=new MyPost(url);
 			str_context=post.Startpost();
 			Log.v(TAG, ""+str_context);
-			//·¢ËÍÏûÏ¢Í¨Öª¸Ä±äÎÄ±¾
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢Í¨Öªï¿½Ä±ï¿½ï¿½Ä±ï¿½
 			if (str_context==null) {
-				//ÌáÊ¾¼ì²âÍøÂçÉèÖÃ
+				//ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				handler_set_content.sendEmptyMessage(FAILE);
 			}else{
 				handler_set_content.sendEmptyMessage(SUCCESS);
@@ -210,7 +220,7 @@ public class ReadActivity extends Activity {
 		init();
 		Intent intent=getIntent();
 	    chapter=(Chapter)intent.getSerializableExtra("Chapter");
-	    Log.v(TAG, "ÕÂ½ÚĞÅÏ¢:"+chapter.toString());
+	    Log.v(TAG, "ç« èŠ‚:"+chapter.toString());
 	    new getBookContent().execute();
 	    initControl();
 	}
@@ -221,13 +231,13 @@ public class ReadActivity extends Activity {
 		txt_title.setText(chapter.getChapter_name());
 		
 		btn_right=(Button) findViewById(R.id.btn_right);
-		btn_right.setText("°ïÖú");
+		btn_right.setText("å¸®åŠ©");
 		btn_right.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Log.v(TAG, "°ïÖú°´Å¥µã»÷");
+				Log.v(TAG, "å¸®åŠ©æŒ‰é’®è¢«ç‚¹å‡»");
 			}
 		});
 		
@@ -273,7 +283,7 @@ public class ReadActivity extends Activity {
 		
 		mScrollView=(ScrollView) findViewById(R.id.page_control);
 		mScrollView.setOnTouchListener(new OnTouchListener() {
-			//ÏûºÄµô´¥ÃşÊÂ¼ş£¬ÈÃscrollView½ûÖ¹¹ö¶¯
+			//å·¦å³ç¿»é¡µï¼Œä¸­é—´å‘¼å‡ºèœå•
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				// TODO Auto-generated method stub
@@ -283,13 +293,13 @@ public class ReadActivity extends Activity {
 					 float zone=w_screen/3;
 					 float x=event.getRawX();
 					 if (x<zone) {
-						//Ïò×ó·­Ò³£¬Èç¹ûÊÇ×î×óÔòÌøÖÁÉÏÒ»ÕÂ½Ú
+						//å·¦å±ï¼Œå‘ä¸Šç¿»é¡µï¼Œå•åˆ°é¡¶æ—¶åŠ è½½ä¸Šä¸€ç« èŠ‚å†…å®¹
 						 page_num=page_now_num;
 						 page_now_num-=1;
 						 handler_set_content.sendEmptyMessage(SCROL_PAGE);
 					} 
 					 if(x>zone*2){
-						//ÏòÓÒ·­Ò³£¬Èç¹û×îÓÒÔòÌøÖÁÏÂÒ»ÕÂ½Ú 
+						//å³å±ï¼Œå‘ä¸‹ç¿»é¡µï¼Œå½“åˆ°åº•æ—¶åŠ è½½ä¸‹ä¸€ç« èŠ‚å†…å®¹
 						 page_num=page_now_num;
 						 page_now_num+=1;
 						 handler_set_content.sendEmptyMessage(SCROL_PAGE);
@@ -322,18 +332,18 @@ public class ReadActivity extends Activity {
 		
 		txt_state=(TextView) findViewById(R.id.txt_state);
 		
-		//»ñÈ¡txt_showµÄÊµ¼Ê¸ß¶È,
+		//åˆ›å»ºè§‚å¯Ÿè€…ï¼Œè·å–æ–‡æœ¬æ¡†çš„å®é™…å¤§å°
 		ViewTreeObserver observer=txt_show.getViewTreeObserver();
 		observer.addOnPreDrawListener(new OnPreDrawListener() {
 			
 			@Override
 			public boolean onPreDraw() {
 				// TODO Auto-generated method stub
-//				 Log.v(TAG,"Ê¹ÓÃViewTreeObserver »ñÈ¡¿í¸ß£ºwidth:"  
+//				 Log.v(TAG,"Ê¹ï¿½ï¿½ViewTreeObserver ï¿½ï¿½È¡ï¿½ï¿½ß£ï¿½width:"  
 //                         + txt_show.getMeasuredWidth() + "---->height:"  
 //                         + txt_show.getMeasuredHeight());  
-				 h_context=txt_show.getMeasuredHeight();//ÎÄ±¾×Ü¸ß¶È
-				 h_ScrollView = mScrollView.getHeight();// ¿ÉÊÓÎÄ±¾¸ß¶È
+				 h_context=txt_show.getMeasuredHeight();//ï¿½Ä±ï¿½ï¿½Ü¸ß¶ï¿½
+				 h_ScrollView = mScrollView.getHeight();// ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ß¶ï¿½
 				 page_all_num = h_context / h_ScrollView+1;
 				 txt_state.setText(page_now_num + "/" + page_all_num);
 				return true;
@@ -367,7 +377,7 @@ public class ReadActivity extends Activity {
 			
 				break;
 			case SCROL_PAGE:
-			//	Log.v(TAG, "¿ÉÊÓÇø:ÄÚÈİÇø=" + h_ScrollView + ":" + h_context);
+			//	Log.v(TAG, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½=" + h_ScrollView + ":" + h_context);
 				
 				if (page_now_num<=0) {
 					nextState=-1;
@@ -388,7 +398,7 @@ public class ReadActivity extends Activity {
 				break;
 			case NO_CHAPTER:
 				page_now_num=page_num;
-				showToast("Ã»ÓĞ¸ü¶àÀ²£¡");
+				showToast("æ²¡æœ‰æ›´å¤šç« èŠ‚äº†ï¼");
 			   break;
 			case HAS_CHAPTER:
 				new getBookContent().execute();

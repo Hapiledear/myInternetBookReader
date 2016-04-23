@@ -33,42 +33,42 @@ import android.widget.LinearLayout;
 
 public class SlideShowView extends FrameLayout {
 	String TAG="SlideShowView";
-	//¶¨Òåµã»÷ÊÂ¼şµÄ¶ÔÍâ½Ó¿Ú
+	//æ¥å£
 	public interface SlideShowViewListener 
 	{
-		public void onClick(int position); //»Øµ÷º¯Êı
+		public void onClick(int position); //æ¥å£æ–¹æ³•
 	}
 
-     private SlideShowViewListener mSlideShowViewListener;//¶ÔÏó´´½¨
+     private SlideShowViewListener mSlideShowViewListener;//æ¥å£å¯¹è±¡
      public void setOnPageClickListener(SlideShowViewListener mSlideShowViewListener)
 	 {
-	  this.mSlideShowViewListener=mSlideShowViewListener;//¶ÔÏó°ó¶¨
+	  this.mSlideShowViewListener=mSlideShowViewListener;//ç»‘å®šæ¥å£
 	 }
-	// Ê¹ÓÃuniversal-image-loader²å¼ş¶ÁÈ¡ÍøÂçÍ¼Æ¬£¬ĞèÒª¹¤³Ìµ¼Èëuniversal-image-loader-1.8.6-with-sources.jar  
+	// Ê¹ï¿½ï¿½universal-image-loaderï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½universal-image-loader-1.8.6-with-sources.jar  
     private ImageLoader imageLoader = ImageLoader.getInstance();  
   
-    //ÂÖ²¥Í¼Í¼Æ¬ÊıÁ¿  
+    //æ˜¾ç¤ºçš„æœ€å¤§æ•°
     private final static int IMAGE_COUNT = 5;  
-    //×Ô¶¯ÂÖ²¥µÄÊ±¼ä¼ä¸ô  
+    //ï¿½Ô¶ï¿½ï¿½Ö²ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½  
     private final static int TIME_INTERVAL = 5;  
-    //×Ô¶¯ÂÖ²¥ÆôÓÃ¿ª¹Ø  
-    private final static boolean isAutoPlay = false;   
+    //æ˜¯å¦è‡ªåŠ¨æ»šåŠ¨
+    private final static boolean isAutoPlay = true;   
       
-    //×Ô¶¨ÒåÂÖ²¥Í¼µÄ×ÊÔ´  
+    //ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½Ö²ï¿½Í¼ï¿½ï¿½ï¿½ï¿½Ô´  
     private String[] imageUrls;  
-    //·ÅÂÖ²¥Í¼Æ¬µÄImageView µÄlist  
+    //ï¿½ï¿½ï¿½Ö²ï¿½Í¼Æ¬ï¿½ï¿½ImageView ï¿½ï¿½list  
     private List<ImageView> imageViewsList;  
-    //·ÅÔ²µãµÄViewµÄlist  
+    //ï¿½ï¿½Ô²ï¿½ï¿½ï¿½Viewï¿½ï¿½list  
     private List<View> dotViewsList;  
       
     private ViewPager viewPager;  
-    //µ±Ç°ÂÖ²¥Ò³  
+    //ï¿½ï¿½Ç°ï¿½Ö²ï¿½Ò³  
     private int currentItem  = 0;  
 
 	public int getCurrentItem() {
 		return currentItem;
 	}
-	//¶¨Ê±ÈÎÎñ  
+	//ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½  
     private ScheduledExecutorService scheduledExecutorService;  
       
     private Context context;  
@@ -112,7 +112,7 @@ public class SlideShowView extends FrameLayout {
 	}
 
 	    /** 
-	     * ¿ªÊ¼ÂÖ²¥Í¼ÇĞ»» 
+	     * ï¿½ï¿½Ê¼ï¿½Ö²ï¿½Í¼ï¿½Ğ»ï¿½ 
 	     */  
 	    private void startPlay(){  
 	        scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();  
@@ -120,13 +120,13 @@ public class SlideShowView extends FrameLayout {
 	    }  
 
 	    /** 
-	     * Í£Ö¹ÂÖ²¥Í¼ÇĞ»» 
+	     * Í£Ö¹ï¿½Ö²ï¿½Í¼ï¿½Ğ»ï¿½ 
 	     */  
 	    private void stopPlay(){  
 	        scheduledExecutorService.shutdown();  
 	    }  
 	    /** 
-	     * Ïú»ÙImageView×ÊÔ´£¬»ØÊÕÄÚ´æ 
+	     * ï¿½ï¿½ï¿½ï¿½ImageViewï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ 
 	     *  
 	     */  
 	    private void destoryBitmaps() {  
@@ -135,24 +135,24 @@ public class SlideShowView extends FrameLayout {
 	            ImageView imageView = imageViewsList.get(i);  
 	            Drawable drawable = imageView.getDrawable();  
 	            if (drawable != null) {  
-	                //½â³ıdrawable¶ÔviewµÄÒıÓÃ  
+	                //ï¿½ï¿½ï¿½drawableï¿½ï¿½viewï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
 	                drawable.setCallback(null);  
 	            }  
 	        }  
 	    }  
 	    /** 
-	     * ³õÊ¼»¯Ïà¹ØData 
+	     * ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Data 
 	     */  
 	    private void initData(){  
 	        imageViewsList = new ArrayList<ImageView>();  
 	        dotViewsList = new ArrayList<View>();  
 	  
-	        // Òì²½ÈÎÎñ»ñÈ¡Í¼Æ¬  
+	        // ï¿½ì²½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Í¼Æ¬  
 	        new GetListTask().execute("");  
 	    }  
 	  
 	    /** 
-	     *Ö´ĞĞÂÖ²¥Í¼ÇĞ»»ÈÎÎñ 
+	     *Ö´ï¿½ï¿½ï¿½Ö²ï¿½Í¼ï¿½Ğ»ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	     * 
 	     */  
 	    private class SlideShowTask implements Runnable{  
@@ -169,7 +169,7 @@ public class SlideShowView extends FrameLayout {
 	    }  
 	    
 	    /** 
-	     * Òì²½ÈÎÎñ,»ñÈ¡Êı¾İ 
+	     * ï¿½ì²½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ 
 	     *  
 	     */  
 	    class GetListTask extends AsyncTask<String, Integer, Boolean> {  
@@ -177,7 +177,7 @@ public class SlideShowView extends FrameLayout {
 	        @Override  
 	        protected Boolean doInBackground(String... params) {  
 	            try {  
-	                // ÕâÀïÒ»°ãµ÷ÓÃ·şÎñ¶Ë½Ó¿Ú»ñÈ¡Ò»×éÂÖ²¥Í¼Æ¬   
+	                // ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½Ë½Ó¿Ú»ï¿½È¡Ò»ï¿½ï¿½ï¿½Ö²ï¿½Í¼Æ¬   
 	              imageUrls=URL.RECOMMEND_IMAGE_URL;
 	                return true;  
 	            } catch (Exception e) {  
@@ -196,7 +196,7 @@ public class SlideShowView extends FrameLayout {
 	    }  
 	    
 	    /** 
-	     * ³õÊ¼»¯ViewsµÈUI 
+	     * ï¿½ï¿½Ê¼ï¿½ï¿½Viewsï¿½ï¿½UI 
 	     */  
 	    private void initUI(Context context){  
 	        if(imageUrls == null || imageUrls.length == 0)  
@@ -207,11 +207,11 @@ public class SlideShowView extends FrameLayout {
 	        LinearLayout dotLayout = (LinearLayout)findViewById(R.id.dotLayout);  
 	        dotLayout.removeAllViews();  
 	          
-	        // ÈÈµã¸öÊıÓëÍ¼Æ¬ÌØÊâÏàµÈ  
+	        // ï¿½Èµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
 	        for (int i = 0; i < imageUrls.length; i++) {  
 	            ImageView view =  new ImageView(context);  
 	            view.setTag(imageUrls[i]);  
-	            if(i==0)//¸øÒ»¸öÄ¬ÈÏÍ¼  
+	            if(i==0)//ï¿½ï¿½Ò»ï¿½ï¿½Ä¬ï¿½ï¿½Í¼  
 	                view.setBackgroundResource(R.drawable.ic_launcher);  
 	            view.setScaleType(ScaleType.FIT_XY);  
 	            imageViewsList.add(view);  
@@ -231,7 +231,7 @@ public class SlideShowView extends FrameLayout {
 	        viewPager.setOnPageChangeListener(new MyPageChangeListener());  
 	    }  
 	    /** 
-	     * ImageLoader Í¼Æ¬×é¼ş³õÊ¼»¯ 
+	     * ImageLoader Í¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ 
 	     *  
 	     * @param context 
 	     */  
@@ -241,18 +241,18 @@ public class SlideShowView extends FrameLayout {
 	        //  ImageLoaderConfiguration.createDefault(this);
 	        // method.
 	        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
-	        .threadPriority(Thread.NORM_PRIORITY - 2)//¼ÓÔØÍ¼Æ¬µÄÏß³ÌÊı
-	        		.denyCacheImageMultipleSizesInMemory()///½âÂëÍ¼ÏñµÄ´ó³ß´ç½«ÔÚÄÚ´æÖĞ»º´æÏÈÇ°½âÂëÍ¼ÏñµÄĞ¡³ß´ç
-	        		.discCacheFileNameGenerator(new Md5FileNameGenerator())//ÉèÖÃ´ÅÅÌ»º´æÎÄ¼şÃû³Æ
-	        		.tasksProcessingOrder(QueueProcessingType.LIFO)//ÉèÖÃ¼ÓÔØÏÔÊ¾Í¼Æ¬¶ÓÁĞ½ø³Ì
+	        .threadPriority(Thread.NORM_PRIORITY - 2)//ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ß³ï¿½ï¿½ï¿½
+	        		.denyCacheImageMultipleSizesInMemory()///ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½Ä´ï¿½ß´ç½«ï¿½ï¿½ï¿½Ú´ï¿½ï¿½Ğ»ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½Ğ¡ï¿½ß´ï¿½
+	        		.discCacheFileNameGenerator(new Md5FileNameGenerator())//ï¿½ï¿½ï¿½Ã´ï¿½ï¿½Ì»ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	        		.tasksProcessingOrder(QueueProcessingType.LIFO)//ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Í¼Æ¬ï¿½ï¿½ï¿½Ğ½ï¿½ï¿½ï¿½
 	        		.writeDebugLogs()
 	        		.build();  
-	      //Ìá½»ÉèÖÃ
+	      //ï¿½á½»ï¿½ï¿½ï¿½ï¿½
 	        ImageLoader.getInstance().init(config);  
 	    }  
 	    
 	    /** 
-	     * Ìî³äViewPagerµÄÒ³ÃæÊÊÅäÆ÷ 
+	     * ï¿½ï¿½ï¿½ViewPagerï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	     *  
 	     */  
 	    private class MyPagerAdapter  extends PagerAdapter{  
@@ -321,8 +321,8 @@ public class SlideShowView extends FrameLayout {
 	    }  
 	    
 	    /** 
-	     * ViewPagerµÄ¼àÌıÆ÷ 
-	     * µ±ViewPagerÖĞÒ³ÃæµÄ×´Ì¬·¢Éú¸Ä±äÊ±µ÷ÓÃ 
+	     * ViewPagerï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ 
+	     * ï¿½ï¿½ViewPagerï¿½ï¿½Ò³ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ 
 	     *  
 	     */  
 	    private class MyPageChangeListener implements OnPageChangeListener{  
@@ -333,18 +333,18 @@ public class SlideShowView extends FrameLayout {
 	        public void onPageScrollStateChanged(int arg0) {  
 	            // TODO Auto-generated method stub  
 	            switch (arg0) {  
-	            case 1:// ÊÖÊÆ»¬¶¯£¬¿ÕÏĞÖĞ  
+	            case 1:// ï¿½ï¿½ï¿½Æ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
 	                isAutoPlay = false;  
 	                break;  
-	            case 2:// ½çÃæÇĞ»»ÖĞ  
+	            case 2:// ï¿½ï¿½ï¿½ï¿½ï¿½Ğ»ï¿½ï¿½ï¿½  
 	                isAutoPlay = true;  
 	                break;  
-	            case 0:// »¬¶¯½áÊø£¬¼´ÇĞ»»Íê±Ï»òÕß¼ÓÔØÍê±Ï  
-	                // µ±Ç°Îª×îºóÒ»ÕÅ£¬´ËÊ±´ÓÓÒÏò×ó»¬£¬ÔòÇĞ»»µ½µÚÒ»ÕÅ  
+	            case 0:// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ»ï¿½ï¿½ï¿½Ï»ï¿½ï¿½ß¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
+	                // ï¿½ï¿½Ç°Îªï¿½ï¿½ï¿½Ò»ï¿½Å£ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ó»¬£ï¿½ï¿½ï¿½ï¿½Ğ»ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½  
 	                if (viewPager.getCurrentItem() == viewPager.getAdapter().getCount() - 1 && !isAutoPlay) {  
 	                    viewPager.setCurrentItem(0);  
 	                }  
-	                // µ±Ç°ÎªµÚÒ»ÕÅ£¬´ËÊ±´Ó×óÏòÓÒ»¬£¬ÔòÇĞ»»µ½×îºóÒ»ÕÅ  
+	                // ï¿½ï¿½Ç°Îªï¿½ï¿½Ò»ï¿½Å£ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½  
 	                else if (viewPager.getCurrentItem() == 0 && !isAutoPlay) {  
 	                    viewPager.setCurrentItem(viewPager.getAdapter().getCount() - 1);  
 	                }  

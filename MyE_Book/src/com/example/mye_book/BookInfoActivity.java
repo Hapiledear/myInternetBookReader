@@ -39,6 +39,11 @@ import android.widget.ToggleButton;
 
 public class BookInfoActivity extends Activity {
 	
+	/**
+	 * ç« èŠ‚ç›‘å¬å™¨ï¼Œç‚¹å‡»ç« èŠ‚å°±ä¼šè·³è½¬è‡³å¯¹åº”ç« èŠ‚çš„é˜…è¯»ç•Œé¢
+	 * @author Administrator
+	 *
+	 */
 	public class OnChapterClickListener implements OnClickListener {
 
 		@Override
@@ -48,14 +53,14 @@ public class BookInfoActivity extends Activity {
             String id= txt_clicked.getTag().toString();
             String name=txt_clicked.getText().toString();
             Log.v(TAG, "id:"+id+" name:"+name);
-            //Ìø×ª²Ù×÷
+            //è·³è½¬è‡³é˜…è¯»ç•Œé¢
             to_ReadActivity(Integer.parseInt(id)-1);
 		}
 
 	}
 
 	/**
-	 * »ñÈ¡Êé¼®ÕÂ½ÚĞÅÏ¢
+	 * åŒæ­¥ä»»åŠ¡ï¼Œè·å–è¿™æœ¬ä¹¦ç±çš„è¯¦ç»†
 	 * @author Administrator
 	 *
 	 */
@@ -66,7 +71,7 @@ public class BookInfoActivity extends Activity {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 			pDialog=new ProgressDialog(BookInfoActivity.this);
-			pDialog.setMessage("ÕıÔÚÓë·şÎñÆ÷Í¨ĞÅ£¬ÇëÉÔºó");
+			pDialog.setMessage("æ­£åœ¨é€šä¿¡ï¼Œè¯·ç¨å...");
 			
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(true);
@@ -139,7 +144,7 @@ public class BookInfoActivity extends Activity {
 			JSONArray chaptersjson=jsonObject.getJSONArray("chapters");
 			chapters=JSONArray.parseArray(chaptersjson.toJSONString(), Chapter.class);
 			Log.v(TAG, chapters.toString());
-			//ÕÂ½ÚĞÅÏ¢µÄ¼ÓÔØ
+			//åŠ è½½ç« èŠ‚ä¿¡æ¯
 			runOnUiThread(new Runnable(){
 				@Override
 				public void run() {
@@ -149,21 +154,21 @@ public class BookInfoActivity extends Activity {
 			});
 
 		}else{
-			Log.v(TAG, "·¢ÉúÁËÎ´Öª´íÎó£¡");
+			Log.v(TAG, "æ— ç« èŠ‚ä¿¡æ¯");
 			
 		}
 	}
 
 	/**
-	 * »ñÈ¡Êé¼®»ù±¾ĞÅÏ¢
+	 * è·å–ä¹¦ç±åŸºæœ¬ä¿¡æ¯
 	 */
 	private void getBookInfo() {
 		// TODO Auto-generated method stub
 		Intent intent=getIntent();
 		book=(Book) intent.getSerializableExtra("theBook");
-		Log.v(TAG, "Êé¼®Îª£º"+book.toString());
+		Log.v(TAG, "ä¹¦ç±ä¿¡æ¯:"+book.toString());
 		new getBookInfoTask().execute();
-		//»ñÈ¡Í¼Æ¬²¢ÉèÖÃÍ¼Æ¬
+		//åŠ è½½ä¹¦ç±çš„å›¾ç‰‡
 		new Thread(new Runnable() {
 			
 			@Override
@@ -175,7 +180,7 @@ public class BookInfoActivity extends Activity {
 				book_cover.setImageBitmap(bmp);
 			}
 		}).start();
-		//¼ì²â¸ÃÊéÊÇ·ñ¼ÓÈëÁËÊÕ²Ø
+		//åŠ è½½ä¹¦ç±çš„åŸºæœ¬ä¿¡æ¯
 		
 		runOnUiThread(new Runnable() {
 			@Override
@@ -199,13 +204,13 @@ public class BookInfoActivity extends Activity {
 		//title bar 
 		txt_title=(TextView) findViewById(R.id.txt_title);
 		btn_downlode=(Button) findViewById(R.id.btn_right);
-		btn_downlode.setText("»º´æ");
+		btn_downlode.setText("ç¼“å­˜å…¨æœ¬");
 		btn_downlode.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Log.v(TAG, "¿ªÊ¼»º´æ¡£¡£¡£");
+				Log.v(TAG, "btn_downlode clicked!");
 				Intent intent=new Intent(BookInfoActivity.this,DownloadService.class);
 				intent.putExtra("chapters", (Serializable)chapters);
 				startService(intent);
@@ -229,13 +234,12 @@ public class BookInfoActivity extends Activity {
 				// TODO Auto-generated method stub
 				
 				if (isCollect) {
-					btn_collection.setText("µã»÷ÊÕ²Ø");
-					//»Ø´«·şÎñÆ÷£¬È¡ÏûÁËÊÕ²Ø
+					btn_collection.setText("æ”¶è—æœ¬ä¹¦");
+					//å›ä¼ æœåŠ¡å™¨ï¼Œå†™å…¥æœ¬åœ°æ•°æ®
 					isCollect=false;
 				}else{
-					//Book×Ö¶Îcollection_num+1
-					//¸Ä±äÏÔÊ¾×Ö·û¡°È¡ÏûÊÕ²Ø¡±
-					btn_collection.setText("È¡ÏûÊÕ²Ø");
+					//å›ä¼ æœåŠ¡å™¨ï¼Œæ›´æ–°æœ¬åœ°æ•°æ®
+					btn_collection.setText("å–æ¶ˆæ”¶è—");
 					isCollect=true;
 				}
 			}
@@ -247,8 +251,8 @@ public class BookInfoActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Log.v(TAG, "¿ªÊ¼ÔÄ¶ÁµÚÒ»ÕÂ");
-				//Ìø×ªµ½ÔÄ¶Á½çÃæ£¬¿ªÊ¼ÔÄ¶Á±¾ÊéµÚÒ»ÕÂ½Ú
+				Log.v(TAG, "btn_read clicked!");
+				//è·³è½¬è‡³é˜…è¯»ç•Œé¢ï¼Œä»ç¬¬ä¸€ç« èŠ‚å¼€å§‹
 				to_ReadActivity(0);
 			}
 		});
@@ -278,8 +282,8 @@ public class BookInfoActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				//Ìø×ªµ½ÔÄ¶Á½çÃæ£¬ÔÄ¶Á×îĞÂÕÂ½Ú
-				Log.v(TAG, "¿ªÊ¼ÔÄ¶Á×îĞÂÕÂ½Ú");
+				//è·³è½¬è‡³é˜…è¯»ç•Œé¢ï¼Œé˜…è¯»æœ€æ–°ç« èŠ‚
+				Log.v(TAG, "txt_new clicked!");
 				to_ReadActivity(chapters.size()-1);
 			}
 		});
@@ -291,10 +295,10 @@ public class BookInfoActivity extends Activity {
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				// TODO Auto-generated method stub
 				if (isChecked) {
-					//µ¹ĞğÅÅÁĞ
+					//ç« èŠ‚å€’å™æ’åˆ—
 					flashback_add_chapter();
 				}else{
-					//Ë³ĞòÅÅÁĞ
+					//ç« èŠ‚é¡ºåºæ’åˆ—
 					order_add_chapter();
 				}
 			}
@@ -309,7 +313,7 @@ public class BookInfoActivity extends Activity {
 		int index=0;
 		list_chapter.removeAllViews();
 		
-		Log.v(TAG, "ÕÂ½ÚÁ¿£º"+chapters.size());
+		Log.v(TAG, "ç« èŠ‚æ•°é‡:"+chapters.size());
 		for (int i = 0; i < chapters.size()/2; i++) {
 			TableRow row1=new TableRow(getBaseContext());
 			
@@ -347,7 +351,7 @@ public class BookInfoActivity extends Activity {
 		int index=chapters.size()-1;
 		list_chapter.removeAllViews();
 		
-		Log.v(TAG, "ÕÂ½ÚÁ¿£º"+chapters.size());
+		Log.v(TAG, "ç« èŠ‚æ•°é‡:"+chapters.size());
 		for (int i = 0; i < chapters.size()/2; i++) {
 
 			TableRow row1=new TableRow(getBaseContext());
@@ -387,7 +391,7 @@ public class BookInfoActivity extends Activity {
 		rd1.setTextSize(20f);
 		rd1.setOnClickListener(new OnChapterClickListener());
 
-		Log.v(TAG, "´´½¨ÁË"+index+rd1.getText());
+		Log.v(TAG, "åˆ›å»ºäº†ç« èŠ‚:"+index+rd1.getText());
 		
 		return rd1;
 	}

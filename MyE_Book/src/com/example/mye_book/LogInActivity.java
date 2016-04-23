@@ -68,7 +68,7 @@ public class LogInActivity extends Activity implements OnClickListener{
 		case R.id.btn_sign_up:
 			Log.v(TAG, "sign click!");
 			Intent intent=new Intent();
-			intent.setClass(LogInActivity.this, SignInActivity.class);//Ìø×ªµ½×¢²á½çÃæ
+			intent.setClass(LogInActivity.this, SignInActivity.class);//ï¿½ï¿½×ªï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½
 			startActivity(intent);
 			finish();
 			break;
@@ -93,13 +93,13 @@ public class LogInActivity extends Activity implements OnClickListener{
 			parameters.add(new BasicNameValuePair("Pass", password));
 			logHandler.sendEmptyMessage(CONNECTION);
 			try {
-				post.setEntity(new UrlEncodedFormEntity(parameters, "UTF-8"));//ÉèÖÃ´«Êä²ÎÊı£¬²¢½øĞĞ´«Êä
-				HttpResponse httpResponse = http.execute(post);//»ñÈ¡´«ÊäµÄ·µ»Ø½á¹û
+				post.setEntity(new UrlEncodedFormEntity(parameters, "UTF-8"));//ï¿½ï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ´ï¿½ï¿½ï¿½
+				HttpResponse httpResponse = http.execute(post);//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½Ø½ï¿½ï¿½
 				
-				if (httpResponse.getStatusLine().getStatusCode() == 200) {// Èç¹ûÓĞÏìÓ¦
+				if (httpResponse.getStatusLine().getStatusCode() == 200) {// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦
 					Log.e(TAG, "success!");
 					String result = EntityUtils.toString(httpResponse
-							.getEntity());// »ñÈ¡ÆäÖĞµÄ×Ö·û´®
+							.getEntity());// ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ğµï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 					parseJson(result);
 				} else {
 					Log.e(TAG,"fail");
@@ -140,34 +140,34 @@ public class LogInActivity extends Activity implements OnClickListener{
 	}
 	
 	/**
-	 * ½øÈëÖ÷½çÃæ²Ù×÷
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	final int CONNECTION_FAILD=2,CONNECTION=3,LOGIN_SUCCESS=4,LOGIN_FAILD=5,TIMEOUT=6,NOSTATE=7,NO_ACCOUNT=8;
 	Handler logHandler=new Handler(){
 		public void handleMessage(Message msg){
 			switch(msg.what){
 			case CONNECTION_FAILD:
-			   showToast("Á¬½ÓÊ§°Ü£¬Çë¼ì²éÍøÂç£¡");
+			   showToast("ç™»é™†å¤±è´¥ï¼");
 			   break;
 			case CONNECTION:
-				showToast("ÕıÔÚÁ¬½Ó£¬ÇëÉÔºó...");
+				showToast("æ­£åœ¨è¿æ¥...");
 				break;
 			case LOGIN_SUCCESS:
-				showToast("µÇÂ½³É¹¦£¡");
-				//Ìø×ªµ½Ö÷½çÃæµÄ½Ó¿Ú
+				showToast("ç™»é™†æˆåŠŸ");
+				//è·³è½¬è‡³ä¸»ç•Œé¢
 				Intent intent=new Intent();
 				intent.setClass(LogInActivity.this,MainActivity.class);
 				startActivity(intent);
 				finish();
 				break;
 			case LOGIN_FAILD:
-				showToast("µÇÂ½Ê§°Ü£¬Çë¼ì²éÓÃ»§Ãû»òÃÜÂë");
+				showToast("ç™»é™†å¤±è´¥ï¼Œè¯·æ£€æŸ¥è´¦å·å¯†ç æ˜¯å¦æ­£ç¡®");
 				break;
 			case TIMEOUT:
-				showToast("Á¬½Ó³¬Ê±£¬ÇëÉÔºóÔÚÊÔ");
+				showToast("æœåŠ¡å™¨è¿æ¥è¶…æ—¶");
 				break;
 			case NOSTATE:
-				showToast("¸ÃÕËºÅÎ´¼¤»î!");
+				showToast("è¯¥è´¦å·æœªæ¿€æ´»ï¼");
 				break;
 			}
 		}

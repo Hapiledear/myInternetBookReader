@@ -14,6 +14,7 @@ public class URL {
     	};
     public static final String GET_RECOMMEND_BOOK_INFORMATION=localhost+ServerName+"/BookServer?flag=1";
     public static final String GET_BOOK_INFORMATION_BY_ID=localhost+ServerName+"/BookServer?flag=2";
+    public static final String GET_BOOK_LIST_BY_CLASSIFY=localhost+ServerName+"/BookServer?flag=3";
     
     public static final String GET_IMG_URL=localhost+ServerName+"/GetimgServer";
     

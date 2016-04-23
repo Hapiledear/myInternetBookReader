@@ -1,21 +1,19 @@
-package server;
+﻿package server;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
-
-
-
-
 
 import com.alibaba.fastjson.JSONObject;
 
@@ -30,6 +28,7 @@ import VO.Chapter;
 public class BookServer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	String MyCharEncoding = "UTF-8";
 	BookDao bookDao=new BookDao();
      
     /**
@@ -45,7 +44,11 @@ public class BookServer extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		this.doPost(request, response);
+
+	    	String req=request.getQueryString();
+		  //  String req=new String(request.getQueryString().getBytes("iso-8859-1"),"utf-8"); 
+		    System.out.println(req);
+		    switchfunction(request, response);
 	}
 
 	/**
@@ -53,8 +56,13 @@ public class BookServer extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding(MyCharEncoding);
+	
+		switchfunction(request, response);
+	}
 
+	private void switchfunction(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
 		String flag = request.getParameter("flag");
 
 		System.out.println("flag:" + flag);
@@ -65,10 +73,42 @@ public class BookServer extends HttpServlet {
 		case 2:
 			by_book_id(request,response);
 			break;
+		case 3:
+			by_book_classify(request,response);
+			break;
 		}
 	}
 	
-	
+	/**
+	 * 根据书籍的分类来查找书籍
+	 * @param request
+	 * @param response
+	 * @throws IOException 
+	 */
+	private void by_book_classify(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub
+		String Book_classify=request.getParameter("classify");
+		System.out.println("类别:"+Book_classify);
+		JSONObject jsonObj=new JSONObject();
+		
+		if (Book_classify==null||Book_classify.equals("")) {
+			jsonObj.put("result", false);
+			jsonObj.put("info", "传入了未知类别");
+		}else{
+			List<Book> books=new ArrayList<Book>();
+			books=bookDao.findBooksByClassify(Book_classify);
+			jsonObj.put("result", true);
+			jsonObj.put("books", books);
+		}
+		response.setCharacterEncoding(MyCharEncoding);
+    	response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println(jsonObj.toString());
+		
+		
+	}
+
 	/**
 	 * 根据书籍的在库ID来获取书籍详细信息
 	 * 详细信息包括：本书基本信息，本书章节信息和本书评论
@@ -94,7 +134,8 @@ public class BookServer extends HttpServlet {
 			e1.printStackTrace();
 		}
 		
-		response.setCharacterEncoding("GBK");
+		response.setCharacterEncoding(MyCharEncoding);
+    	response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = null;
 		boolean isEmpty=true;
 		try {
@@ -147,7 +188,9 @@ public class BookServer extends HttpServlet {
 			e1.printStackTrace();
 		}
 
-		response.setCharacterEncoding("GBK");
+		
+		response.setCharacterEncoding(MyCharEncoding);
+    	response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = null;
 		boolean isEmpty=true;
 		try {

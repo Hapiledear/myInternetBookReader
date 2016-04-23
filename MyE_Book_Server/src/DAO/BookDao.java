@@ -195,4 +195,37 @@ public class BookDao {
 		chapter.setDate(rs.getDate("date"));
 		chapter.setUrl(rs.getString("url"));
 	}
+
+	public List<Book> findBooksByClassify(String book_classify) {
+		// TODO Auto-generated method stub
+		List<Book> books=new ArrayList<Book>();
+		try {
+			dbc=new DatabaseConnection();
+			conn=dbc.getConnection();
+	 		String sql="SELECT * FROM tb_book WHERE lab LIKE ? ORDER BY click_num DESC";
+	 		PreparedStatement pstm=conn.prepareStatement(sql);
+	 		String parma1=new String("%"+book_classify+"%");
+	 		System.out.println("标签为:"+parma1);
+	 		pstm.setString(1, parma1);
+	 		ResultSet rs=pstm.executeQuery();
+	 		
+	 		if(rs!=null){
+	 			while (rs.next()) {
+					Book book = new Book();
+					booksets(rs, book);
+					books.add(book);
+				}
+	 			conn.commit();
+				pstm.close();
+				conn.close();
+	 		}else{
+	 			
+	 		}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+ 		
+		return books;
+	}
 }

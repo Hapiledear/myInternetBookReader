@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,13 +46,13 @@ public class MyPost {
 	public String Startpost() {
 		
 			try {
-				post.setEntity(new UrlEncodedFormEntity(parameters, "UTF-8"));//ÉèÖÃ´«Êä²ÎÊı£¬²¢½øĞĞ´«Êä
-				HttpResponse httpResponse = http.execute(post);//»ñÈ¡´«ÊäµÄ·µ»Ø½á¹û
-				if (httpResponse.getStatusLine().getStatusCode() == 200) {// Èç¹ûÓĞÏìÓ¦
+				post.setEntity(new UrlEncodedFormEntity(parameters, "UTF-8"));//ï¿½ï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ´ï¿½ï¿½ï¿½
+				HttpResponse httpResponse = http.execute(post);//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½Ø½ï¿½ï¿½
+				if (httpResponse.getStatusLine().getStatusCode() == 200) {// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦
 					Log.e(TAG, "success!");
 					String result = EntityUtils.toString(httpResponse
-							.getEntity());// »ñÈ¡ÆäÖĞµÄ×Ö·û´®
-					return result;
+							.getEntity(),"utf-8");//è·å–å“åº”ç»“æœ
+					return URLDecoder.decode(result,"utf-8");
 				} else {
 					Log.e(TAG,"fail");
 					return null;
@@ -77,13 +78,13 @@ public class MyPost {
 	        Bitmap bmp = null;  
 	        try {  
 	            URL myurl = new URL(url);  
-	            // »ñµÃÁ¬½Ó  
+	            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
 	            HttpURLConnection conn = (HttpURLConnection) myurl.openConnection();  
-	            conn.setConnectTimeout(6000);//ÉèÖÃ³¬Ê±  
+	            conn.setConnectTimeout(6000);//ï¿½ï¿½ï¿½Ã³ï¿½Ê±  
 	            conn.setDoInput(true);  
-	            conn.setUseCaches(false);//²»»º´æ  
+	            conn.setUseCaches(false);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
 	            conn.connect();  
-	            InputStream is = conn.getInputStream();//»ñµÃÍ¼Æ¬µÄÊı¾İÁ÷  
+	            InputStream is = conn.getInputStream();//ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
 	            bmp = BitmapFactory.decodeStream(is);  
 	            is.close();  
 	        } catch (Exception e) {  
